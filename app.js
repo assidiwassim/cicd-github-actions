@@ -6,6 +6,10 @@ app.get('/', (req, res) => {
   res.send('Bonjour')
 })
 
+app.get('/auth', (req, res) => {
+  res.send('user logged in')
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
