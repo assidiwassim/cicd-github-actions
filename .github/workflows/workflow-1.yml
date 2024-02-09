@@ -32,10 +32,16 @@ jobs:
       - name: Tag Image 
         run: docker tag my-image assidiwassimdev/my-image-cicd:latest
 
-      - name: Verify  
-        run: docker images
-
       - name: Push Image to DockerHub
         run: docker push assidiwassimdev/my-image-cicd:latest
 
-  
+  deploy-to-ec2: 
+
+    runs-on: ubuntu-latest
+
+    needs: build-and-push
+
+    steps:
+      
+      - name: Test step
+        run: echo hello
