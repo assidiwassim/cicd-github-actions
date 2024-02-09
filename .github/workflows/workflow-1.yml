@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Tag Image 
-        run: docker tag my-image assidiwassimdev/my-image-CICD:latest
+        run: docker tag my-image assidiwassimdev/my-image-cicd:latest
 
       #- name: Push Image to DockerHub
        # run: docker tag my-image assidiwassimdev/my-image-CICD:latest
