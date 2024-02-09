@@ -35,7 +35,7 @@ jobs:
       - name: Verify  
         run: docker images
 
-      #- name: Push Image to DockerHub
-       # run: docker tag my-image assidiwassimdev/my-image-CICD:latest
+      - name: Push Image to DockerHub
+        run: docker push assidiwassimdev/my-image-cicd:latest
 
   
