@@ -1,5 +1,5 @@
 
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -11,69 +11,28 @@ on:
 
 jobs:
 
-
-  job-0:
+  build-and-push:
 
     runs-on: ubuntu-latest
 
     steps:
       
-      - name: Clone project 
+      - name: Clone project into this runner
         uses: actions/checkout@v3
 
-      - name: Run script 
-        run: echo hello
+      - name: Build Image from Dockerfile (source code )
+        run: docker build -t my-image .
 
-  job-1:
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    runs-on: ubuntu-latest
+     # - name: Tag Image 
+      #  run: docker tag my-image assidiwassimdev/my-image-CICD:latest
 
-    needs: [job-0]
-
-    steps:
-      
-      - name: Clone project 
-        uses: actions/checkout@v3
-
-      - name: Run script 
-        run: echo hello
-
-
-  job-2:
-
-    runs-on: ubuntu-latest
-
-    needs: [job-0]
-
-    steps:
-
-      - name: Run script 
-        run: echo hello
-
-
-  job-3:
-
-    runs-on: ubuntu-latest
-
-    needs: [job-1,job-2]
-
-    steps:
-
-      - name: Run script 
-        run: echo hello
-
-
-  job-4:
-
-    runs-on: ubuntu-latest
-
-    needs: [job-3]
-
-    steps:
-     
-      - name: Clone project 
-        uses: actions/checkout@v3
+      #- name: Push Image to DockerHub
+       # run: docker tag my-image assidiwassimdev/my-image-CICD:latest
 
   
-      - name: Run script 1 of job 2
-        run: echo script-1-message of job 2
