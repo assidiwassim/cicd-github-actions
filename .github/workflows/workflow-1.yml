@@ -43,5 +43,11 @@ jobs:
 
     steps:
       
-      - name: Test step
-        run: echo hello...
+    - name: Deploy to EC2 AWS
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_PRIVATE_KEY }}
+        script: |
+            sudo docker ps
