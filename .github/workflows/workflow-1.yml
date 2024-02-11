@@ -50,4 +50,7 @@ jobs:
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
-            sudo docker ps
+            sudo docker pull assidiwassimdev/my-image-cicd:latest
+            sudo docker stop nodejs-container 
+            sudo docker rm nodejs-container 
+            sudo docker run -d --name nodejs-container -p 3001:3000 assidiwassimdev/my-image-cicd:latest
