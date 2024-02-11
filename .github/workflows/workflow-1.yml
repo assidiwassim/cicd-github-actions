@@ -16,11 +16,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      
-      - name: Clone project into this runner
-        uses: actions/checkout@v3
 
-      - name: Build Image from Dockerfile (source code )
+      - name: Test variable
+        run: echo ${{ vars.IMAGE_NAME }}
+      
+      - name: Checkout code 
+        uses: actions/checkout@v3 
+
+      - name: Build Image 
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/my-image-cicd:latest .
 
       - name: Log in to Docker Hub
